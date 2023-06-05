@@ -1,32 +1,43 @@
 package Tests;
 
-import org.openqa.selenium.By;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.AssertJUnit;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pages.BestSellersPage;
+import utils.PageTitlesUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 public class HomePageTest extends BaseTests {
 
-    private static WebElement element;
-    protected static WebDriverWait wait;
+    private BestSellersPage bestSellersPage;
+    @BeforeTest
+    public void setupTest() {
+        driver = new ChromeDriver();
 
+    driver.get(BASE_URL);
+    System.out.println(driver.getTitle());
+    assertEquals(driver.getTitle(), PageTitlesUtils.HOME_PAGE_TITLE);
 
+    bestSellersPage = new BestSellersPage(driver);
+    }
 
     @Test
     public void shouldSeeBestSellersItem() {
 
-        WebElement bestSellerButton = driver.findElement(By.cssSelector(".blockbestsellers"));
-        bestSellerButton.click();
-        List<WebElement> productNames = driver.findElements(By.cssSelector(".blockbestsellers .product-name"));
+        bestSellersPage.clickOnBestSellersButton();
 
-        for (WebElement productName : productNames) {
-            System.out.println(productName.getText());
-        }
+        List<WebElement> productNames = BestSellersPage.getProductNames;
+        System.out.println(productNames);
 
-        boolean isAnyProductHasNameEmpty = productNames.stream().anyMatch(el -> el.getText().isEmpty());
-        AssertJUnit.assertFalse(isAnyProductHasNameEmpty);
+        List<WebElement> isAnyProductHasEmptyName = productNames.stream()
+                .filter(el -> el.getText().isEmpty()).collect(Collectors.toList());
+
+        Assertions.assertThat(isAnyProductHasEmptyName).isEmpty();
     }
 }

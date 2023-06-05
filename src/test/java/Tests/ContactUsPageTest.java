@@ -1,75 +1,74 @@
 package Tests;
 
 import org.assertj.core.api.Assertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import utils.PageTitlesUtils;
-
-import java.time.Duration;
-
-import static org.testng.AssertJUnit.assertEquals;
+import pages.ContactUsFormPage;
+import pages.TopMenuPage;
 
 public class ContactUsPageTest extends BaseTests {
 
+    private TopMenuPage topMenuPage;
+    private ContactUsFormPage contactUsFormPage;
+
+
+    @BeforeTest
+    public void setupTest() {
+        driver = new ChromeDriver();
+        driver.get(BASE_URL);
+
+        topMenuPage = new TopMenuPage(driver);
+        contactUsFormPage = new ContactUsFormPage(driver);
+    }
 
     @Test
     public void shouldNotAllowToSendEmptyForm() {
-        WebElement contactUsButton = driver.findElement(By.cssSelector("#contact-link"));
-        contactUsButton.click();
+        topMenuPage.clickOnContactUsLink();
+        contactUsFormPage.clickOnSubmitContactFormButton();
+        Assertions.assertThat(contactUsFormPage.isAlertMessageDisplay()).isTrue();
+    }
 
-        WebElement submitContactFormButton = driver.findElement(By.cssSelector("#submitMessage"));
-        submitContactFormButton.click();
-
-        WebElement alertMassage = driver.findElement(By.className("alert-danger"));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOf(alertMassage));
-
-        Assertions.assertThat(alertMassage.isDisplayed()).isTrue();
+    @Test
+    public void shouldNotAllowToSandFormWithoutEmail() {
+        topMenuPage.clickOnContactUsLink();
+        contactUsFormPage.setSubjectChoose("c");
+        contactUsFormPage.setIdOrderInput("QWERTY #1234");
+        contactUsFormPage.setMessageInput("QWERTY #1234 asdf");
+        contactUsFormPage.clickOnSubmitContactFormButton();
+        Assertions.assertThat(contactUsFormPage.isAlertMessageDisplay()).isTrue();
 
     }
 
-//    @Test
-//    public void shouldNotAllowToSandFormWithoutEmail(){
-//        WebElement contactUsButton = driver.findElement(By.cssSelector("#contact-link"));
-//        contactUsButton.click();
-//
-//        WebElement orderInput = driver.findElement(By.id("id_order"));
-//        orderInput.sendKeys("Order number QWERTY#1234");
-//
-//
-//
-//    }
+    @Test
+    public void shouldNotAllowToSandFormWithoutSubject() {
+        topMenuPage.clickOnContactUsLink();
+        contactUsFormPage.setEmailInput("test@example.com");
+        contactUsFormPage.setIdOrderInput("QWERTY #1234");
+        contactUsFormPage.setMessageInput("QWERTY #1234 asdf");
+        contactUsFormPage.clickOnSubmitContactFormButton();
+        Assertions.assertThat(contactUsFormPage.isAlertMessageDisplay()).isTrue();
+    }
 
-//    @Test
-//    public void shouldNotAllowToSandFormWithoutSubject(){
-//        WebElement contactUsButton = driver.findElement(By.cssSelector("#contact-link"));
-//        contactUsButton.click();
-//
-//        WebElement emailInput = driver.findElement(By.id("email"));
-//        emailInput.click();
-//        emailInput.sendKeys("test@test.pl");
-//    }
-//
-//
-//    @Test
-//    public void shouldNotAllowToSandFormWithoutMessage(){
-//        WebElement contactUsButton = driver.findElement(By.cssSelector("#contact-link"));
-//        contactUsButton.click();
-//    }
-//
-//    @Test
-//    public void validFormSubmission(){
-//        WebElement contactUsButton = driver.findElement(By.cssSelector("#contact-link"));
-//        contactUsButton.click();
-//
-//    }
-//
-//    @Test
-//    public void shouldDisplayDescriptionToSubject(){
-//        WebElement contactUsButton = driver.findElement(By.cssSelector("#contact-link"));
-//        contactUsButton.click();
-//    }
+
+    @Test
+    public void shouldNotAllowToSandFormWithoutMessage() {
+        topMenuPage.clickOnContactUsLink();
+        contactUsFormPage.setIdOrderInput("QWERTY #1234");
+        contactUsFormPage.setEmailInput("test@example.com");
+
+        contactUsFormPage.clickOnSubmitContactFormButton();
+        Assertions.assertThat(contactUsFormPage.isAlertMessageDisplay()).isTrue();
+    }
+
+    @Test
+    public void validFormSubmission() {
+        topMenuPage.clickOnContactUsLink();
+        contactUsFormPage.setSubjectChoose("c");
+        contactUsFormPage.setEmailInput("test@example.com");
+        contactUsFormPage.setIdOrderInput("QWERTY #1234");
+        contactUsFormPage.setMessageInput("QWERTY #1234 asdf");
+        contactUsFormPage.clickOnSubmitContactFormButton();
+        Assertions.assertThat(contactUsFormPage.isAlertSuccessDisplayed()).isTrue();
+    }
 }
