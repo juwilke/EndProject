@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class ContactUsFormPage {
-    private WebDriverWait wait;
+    private final WebDriverWait wait;
     public ContactUsFormPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));

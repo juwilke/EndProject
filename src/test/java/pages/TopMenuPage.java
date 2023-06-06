@@ -13,7 +13,14 @@ public class TopMenuPage {
     @FindBy(linkText = "Contact us")
     WebElement contactUsLink;
 
+    @FindBy(className = "login")
+    WebElement loginLink;
+
     public void clickOnContactUsLink(){
         contactUsLink.click();
+    }
+
+    public void clickOnLoginLink(){
+        loginLink.click();
     }
 }

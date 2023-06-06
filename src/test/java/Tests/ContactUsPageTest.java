@@ -54,6 +54,7 @@ public class ContactUsPageTest extends BaseTests {
     @Test
     public void shouldNotAllowToSandFormWithoutMessage() {
         topMenuPage.clickOnContactUsLink();
+        contactUsFormPage.setSubjectChoose("c");
         contactUsFormPage.setIdOrderInput("QWERTY #1234");
         contactUsFormPage.setEmailInput("test@example.com");
 

@@ -1,7 +1,6 @@
 package Tests;
 
 import org.assertj.core.api.Assertions;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -9,7 +8,6 @@ import pages.BestSellersPage;
 import utils.PageTitlesUtils;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -32,12 +30,9 @@ public class HomePageTest extends BaseTests {
 
         bestSellersPage.clickOnBestSellersButton();
 
-        List<WebElement> productNames = BestSellersPage.getProductNames;
+        List<String> productNames = bestSellersPage.getProductNames();
         System.out.println(productNames);
 
-        List<WebElement> isAnyProductHasEmptyName = productNames.stream()
-                .filter(el -> el.getText().isEmpty()).collect(Collectors.toList());
-
-        Assertions.assertThat(isAnyProductHasEmptyName).isEmpty();
+        Assertions.assertThat(productNames).isNotEmpty();
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BestSellersPage {
-    public static List<WebElement> getProductNames;
+
 
     public BestSellersPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
