@@ -63,7 +63,7 @@ public class ContactUsPageTest extends BaseTests {
     }
 
     @Test
-    public void validFormSubmission() {
+    public void canSendValidForm() {
         topMenuPage.clickOnContactUsLink();
         contactUsFormPage.setSubjectChoose("c");
         contactUsFormPage.setEmailInput("test@example.com");
