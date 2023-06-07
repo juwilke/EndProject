@@ -1,5 +1,7 @@
 package Tests;
 
+import enums.ContactMassageSubject;
+import model.ContactMassage;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeTest;
@@ -11,7 +13,6 @@ public class ContactUsPageTest extends BaseTests {
 
     private TopMenuPage topMenuPage;
     private ContactUsFormPage contactUsFormPage;
-
 
     @BeforeTest
     public void setupTest() {
@@ -31,8 +32,9 @@ public class ContactUsPageTest extends BaseTests {
 
     @Test
     public void shouldNotAllowToSandFormWithoutEmail() {
+        ContactMassage contactMassage = new ContactMassage();
         topMenuPage.clickOnContactUsLink();
-        contactUsFormPage.setSubjectChoose("c");
+        contactMassage.setSubject(ContactMassageSubject.CUSTOMER_SERVICE);
         contactUsFormPage.setIdOrderInput("QWERTY #1234");
         contactUsFormPage.setMessageInput("QWERTY #1234 asdf");
         contactUsFormPage.clickOnSubmitContactFormButton();
@@ -53,11 +55,11 @@ public class ContactUsPageTest extends BaseTests {
 
     @Test
     public void shouldNotAllowToSandFormWithoutMessage() {
+        ContactMassage contactMassage = new ContactMassage();
         topMenuPage.clickOnContactUsLink();
-        contactUsFormPage.setSubjectChoose("c");
+        contactMassage.setSubject(ContactMassageSubject.WEBMASTER);
         contactUsFormPage.setIdOrderInput("QWERTY #1234");
         contactUsFormPage.setEmailInput("test@example.com");
-
         contactUsFormPage.clickOnSubmitContactFormButton();
         Assertions.assertThat(contactUsFormPage.isAlertMessageDisplay()).isTrue();
     }
@@ -66,7 +68,7 @@ public class ContactUsPageTest extends BaseTests {
     public void canSendValidForm() {
         topMenuPage.clickOnContactUsLink();
         contactUsFormPage.setSubjectChoose("c");
-        contactUsFormPage.setEmailInput("test@example.com");
+        contactUsFormPage.setEmailInput("test11@example.com");
         contactUsFormPage.setIdOrderInput("QWERTY #1234");
         contactUsFormPage.setMessageInput("QWERTY #1234 asdf");
         contactUsFormPage.clickOnSubmitContactFormButton();

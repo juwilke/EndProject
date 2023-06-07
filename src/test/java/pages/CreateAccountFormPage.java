@@ -1,19 +1,18 @@
 package pages;
 
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CreateAccountFormPage extends BasePage {
+    private final AlertBoxPage alertBoxPage;
     public CreateAccountFormPage(WebDriver driver) {
         super(driver);
+        alertBoxPage = new AlertBoxPage(driver);
     }
 
     @FindBy(id = "account-creation_form")
     WebElement accountCreationForm;
-
     @FindBy(id = "id_gender2")
     WebElement genderFemale;
     @FindBy(id = "id_gender1")
@@ -32,12 +31,7 @@ public class CreateAccountFormPage extends BasePage {
     WebElement alertError;
 
     public boolean isAccountCreationFormDisplayed(){
-        wait.until(ExpectedConditions.visibilityOf(accountCreationForm));
-        boolean isDisplayAccountCreation = false;
-        try {
-            isDisplayAccountCreation = accountCreationForm.isDisplayed();
-        } catch (NoSuchElementException exception) {}
-        return isDisplayAccountCreation;
+        return alertBoxPage.isDisplayed(accountCreationForm);
     }
 
     public void clickOnGenderFemale(){
@@ -60,20 +54,9 @@ public class CreateAccountFormPage extends BasePage {
         submitAccountButton.click();
     }
     public boolean isAlertSuccessDisplayed(){
-        wait.until(ExpectedConditions.visibilityOf(alertSuccess));
-        boolean isDisplaySuccess = false;
-        try {
-            isDisplaySuccess = alertSuccess.isDisplayed();
-        } catch (NoSuchElementException exception) {}
-        return isDisplaySuccess;
+        return alertBoxPage.isDisplayed(alertSuccess);
     }
-
     public boolean isAlertErrorDisplayed() {
-        wait.until(ExpectedConditions.visibilityOf(alertError));
-        boolean isDisplayError = false;
-        try {
-            isDisplayError = alertError.isDisplayed();
-        } catch (NoSuchElementException exception) {}
-        return isDisplayError;
+        return alertBoxPage.isDisplayed(alertError);
     }
 }

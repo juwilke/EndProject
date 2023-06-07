@@ -1,15 +1,16 @@
 package pages;
 
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ContactUsFormPage extends BasePage{
 
+    private final AlertBoxPage alertBoxPage;
+
     public ContactUsFormPage(WebDriver driver) {
         super(driver);
+        alertBoxPage = new AlertBoxPage(driver);
     }
 
     @FindBy(id = "submitMessage")
@@ -31,37 +32,22 @@ public class ContactUsFormPage extends BasePage{
         submitContactFormButton.click();
     }
     public boolean isAlertMessageDisplay(){
-        wait.until(ExpectedConditions.visibilityOf(alertMessage));
-        boolean isDisplay = false;
-        try {
-           isDisplay = alertMessage.isDisplayed();
-        } catch (NoSuchElementException exception) {}
-        return isDisplay;
+        return alertBoxPage.isDisplayed(alertMessage);
     }
-
     public void setEmailInput(String email){
         emailInput.sendKeys(email);
     }
-
     public void setIdOrderInput(String order){
         idOrderInput.sendKeys(order);
     }
-
     public void setMessageInput(String message){
         messageInput.sendKeys(message);
     }
-
     public void setSubjectChoose(String subject){
         subjectChoose.sendKeys(subject);
     }
-
     public boolean isAlertSuccessDisplayed(){
-        wait.until(ExpectedConditions.visibilityOf(alertSuccess));
-        boolean isDisplaySuccess = false;
-        try {
-            isDisplaySuccess = alertSuccess.isDisplayed();
-        } catch (NoSuchElementException exception) {}
-        return isDisplaySuccess;
+        return alertBoxPage.isDisplayed(alertSuccess);
     }
 
 
