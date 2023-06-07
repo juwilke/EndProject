@@ -6,11 +6,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class ContactUsFormPage extends BasePage{
 
-    private final AlertBoxPage alertBoxPage;
-
     public ContactUsFormPage(WebDriver driver) {
         super(driver);
-        alertBoxPage = new AlertBoxPage(driver);
     }
 
     @FindBy(id = "submitMessage")
@@ -32,7 +29,7 @@ public class ContactUsFormPage extends BasePage{
         submitContactFormButton.click();
     }
     public boolean isAlertMessageDisplay(){
-        return alertBoxPage.isDisplayed(alertMessage);
+        return super.isDisplayed(alertMessage);
     }
     public void setEmailInput(String email){
         emailInput.sendKeys(email);
@@ -47,7 +44,7 @@ public class ContactUsFormPage extends BasePage{
         subjectChoose.sendKeys(subject);
     }
     public boolean isAlertSuccessDisplayed(){
-        return alertBoxPage.isDisplayed(alertSuccess);
+        return super.isDisplayed(alertSuccess);
     }
 
 

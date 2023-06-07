@@ -5,10 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
-    private final AlertBoxPage alertBoxPage;
+
     public LoginPage(WebDriver driver) {
         super(driver);
-        alertBoxPage = new AlertBoxPage(driver);
     }
 
     @FindBy(id = "email_create")
@@ -42,9 +41,9 @@ public class LoginPage extends BasePage {
         submitLoginButton.click();
     }
     public boolean isCreateAccountErrorDisplayed(){
-        return alertBoxPage.isDisplayed(createAccountError);
+        return super.isDisplayed(createAccountError);
     }
     public boolean isLoginErrorDisplayed(){
-        return alertBoxPage.isDisplayed(loginError);
+        return super.isDisplayed(loginError);
     }
 }

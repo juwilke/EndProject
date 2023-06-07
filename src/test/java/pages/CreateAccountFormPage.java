@@ -5,10 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CreateAccountFormPage extends BasePage {
-    private final AlertBoxPage alertBoxPage;
     public CreateAccountFormPage(WebDriver driver) {
         super(driver);
-        alertBoxPage = new AlertBoxPage(driver);
     }
 
     @FindBy(id = "account-creation_form")
@@ -31,13 +29,11 @@ public class CreateAccountFormPage extends BasePage {
     WebElement alertError;
 
     public boolean isAccountCreationFormDisplayed(){
-        return alertBoxPage.isDisplayed(accountCreationForm);
+        return super.isDisplayed(accountCreationForm);
     }
-
     public void clickOnGenderFemale(){
         genderFemale.click();
     }
-
     public void clickOnGenderMale(){
         genderMale.click();
     }
@@ -54,9 +50,9 @@ public class CreateAccountFormPage extends BasePage {
         submitAccountButton.click();
     }
     public boolean isAlertSuccessDisplayed(){
-        return alertBoxPage.isDisplayed(alertSuccess);
+        return super.isDisplayed(alertSuccess);
     }
     public boolean isAlertErrorDisplayed() {
-        return alertBoxPage.isDisplayed(alertError);
+        return super.isDisplayed(alertError);
     }
 }
