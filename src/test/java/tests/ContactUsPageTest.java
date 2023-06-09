@@ -1,10 +1,10 @@
-package Tests;
+package tests;
 
 import enums.ContactMassageSubject;
 import model.ContactMassage;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.ContactUsFormPage;
 import pages.TopMenuPage;
@@ -14,7 +14,7 @@ public class ContactUsPageTest extends BaseTests {
     private TopMenuPage topMenuPage;
     private ContactUsFormPage contactUsFormPage;
 
-    @BeforeTest
+    @BeforeClass
     public void setupTest() {
         driver = new ChromeDriver();
         driver.get(BASE_URL);
@@ -42,13 +42,17 @@ public class ContactUsPageTest extends BaseTests {
 
     }
 
+    private void fillOutForm(String email, String idOrder, String message) {
+        contactUsFormPage.setEmailInput(email);
+        contactUsFormPage.setIdOrderInput(idOrder);
+        contactUsFormPage.setMessageInput(message);
+        contactUsFormPage.clickOnSubmitContactFormButton();
+    }
+
     @Test
     public void shouldNotAllowToSandFormWithoutSubject() {
         topMenuPage.clickOnContactUsLink();
-        contactUsFormPage.setEmailInput("test@example.com");
-        contactUsFormPage.setIdOrderInput("QWERTY #1234");
-        contactUsFormPage.setMessageInput("QWERTY #1234 asdf");
-        contactUsFormPage.clickOnSubmitContactFormButton();
+        fillOutForm("test@example.com", "QWERTY #1234", "QWERTY #1234 asdf");
         Assertions.assertThat(contactUsFormPage.isAlertMessageDisplay()).isTrue();
     }
 

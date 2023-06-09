@@ -1,8 +1,8 @@
-package Tests;
+package tests;
 
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.BestSellersPage;
 import utils.PageTitlesUtils;
@@ -14,7 +14,7 @@ import static org.testng.AssertJUnit.assertEquals;
 public class HomePageTest extends BaseTests {
 
     private BestSellersPage bestSellersPage;
-    @BeforeTest
+    @BeforeClass
     public void setupTest() {
         driver = new ChromeDriver();
 

@@ -1,8 +1,8 @@
-package Tests;
+package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 public class BaseTests {
@@ -14,7 +14,7 @@ public class BaseTests {
         WebDriverManager.chromedriver().setup();
     }
 
-    @AfterTest
+    @AfterClass(alwaysRun = true)
     public void teardown() {
         if (driver != null) {
             driver.quit();

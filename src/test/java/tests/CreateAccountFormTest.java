@@ -1,8 +1,8 @@
-package Tests;
+package tests;
 
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.CreateAccountFormPage;
 import pages.LoginPage;
@@ -14,7 +14,7 @@ public class CreateAccountFormTest extends BaseTests {
     private CreateAccountFormPage createAccountFormPage;
     private TopMenuPage topMenuPage;
 
-    @BeforeTest
+    @BeforeClass
     public void setupTest() {
         driver = new ChromeDriver();
         driver.get(BASE_URL);
