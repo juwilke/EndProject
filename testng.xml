@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="AMF_EndProject" verbose="1" parallel="false">
+    <test name="Contact form tests" preserve-order="true" enabled="false">
+        <classes>
+            <class name = "tests.ContactUsPageTest"/>
+        </classes>
+    </test>
+    <test name="Test checking the display of items" preserve-order="true" enabled="false">
+        <classes>
+            <class name = "tests.HomePageTest"/>
+        </classes>
+    </test>
+    <test name="Login page tests" preserve-order="true" enabled="false">
+        <classes>
+            <class name = "tests.LoginPageTest"/>
+        </classes>
+    </test>
+    <test name="Tests checking the account creation form" preserve-order="true" enabled="false">
+        <classes>
+            <class name = "tests.CreateAccountFormTest"/>
+        </classes>
+    </test>
+</suite>
