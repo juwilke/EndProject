@@ -13,8 +13,14 @@ public class MyAccountPage extends BasePage {
 
     @FindBy(className = "info-account")
     WebElement infoAccount;
+    @FindBy(className = "logout")
+    WebElement logout;
 
     public boolean isInfoAccountDisplayed() {
         return super.isDisplayed(infoAccount);
+    }
+
+    public void clickOnLogout() {
+        logout.click();
     }
 }

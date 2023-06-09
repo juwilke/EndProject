@@ -24,7 +24,7 @@ public class CreateAccountFormTest extends BaseTests {
         loginPage = new LoginPage(driver);
     }
 
-    @Test
+    @Test(priority = 1)
     public void shouldNotAllowToCreateAccountWithEmailOnly(){
         topMenuPage.clickOnLoginLink();
         loginPage.setEmailCreateInput("john@example.com");
@@ -33,20 +33,20 @@ public class CreateAccountFormTest extends BaseTests {
         createAccountFormPage.clickOnSubmitAccountButton();
         Assertions.assertThat(createAccountFormPage.isAlertErrorDisplayed()).isTrue();
     }
-    @Test
+    @Test(priority = 5)
     public void canCreateNewAccount(){
         topMenuPage.clickOnLoginLink();
-        loginPage.setEmailCreateInput("lizzekeen@example.com");
+        loginPage.setEmailCreateInput("lizakan@example.com");
         loginPage.clickOnSubmitCreateButton();
         Assertions.assertThat(createAccountFormPage.isAccountCreationFormDisplayed()).isTrue();
         createAccountFormPage.clickOnGenderFemale();
-        createAccountFormPage.setFirstNameInput("Lizzie");
-        createAccountFormPage.setLastNameInput("Keen");
+        createAccountFormPage.setFirstNameInput("Lizak");
+        createAccountFormPage.setLastNameInput("Kan");
         createAccountFormPage.setPasswordInput("NhYvAI0O4CkOuGn");
         createAccountFormPage.clickOnSubmitAccountButton();
         Assertions.assertThat(createAccountFormPage.isAlertSuccessDisplayed()).isTrue();
     }
-    @Test
+    @Test(priority = 2)
     public void shouldNotAllowToCreateAccountWithoutFirstName(){
         topMenuPage.clickOnLoginLink();
         loginPage.setEmailCreateInput("jobb@example.com");
@@ -57,7 +57,7 @@ public class CreateAccountFormTest extends BaseTests {
         createAccountFormPage.clickOnSubmitAccountButton();
         Assertions.assertThat(createAccountFormPage.isAlertErrorDisplayed()).isTrue();
     }
-    @Test
+    @Test(priority = 3)
     public void shouldNotAllowToCreateAccountWithoutLastName(){
         topMenuPage.clickOnLoginLink();
         loginPage.setEmailCreateInput("jbob@example.com");
@@ -68,7 +68,7 @@ public class CreateAccountFormTest extends BaseTests {
         createAccountFormPage.clickOnSubmitAccountButton();
         Assertions.assertThat(createAccountFormPage.isAlertErrorDisplayed()).isTrue();
     }
-    @Test
+    @Test(priority = 4)
     public void shouldNotAllowToCreateAccountWithoutPassword(){
         topMenuPage.clickOnLoginLink();
         loginPage.setEmailCreateInput("bjob@example.com");

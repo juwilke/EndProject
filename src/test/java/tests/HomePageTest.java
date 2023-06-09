@@ -14,15 +14,16 @@ import static org.testng.AssertJUnit.assertEquals;
 public class HomePageTest extends BaseTests {
 
     private BestSellersPage bestSellersPage;
+
     @BeforeClass
     public void setupTest() {
         driver = new ChromeDriver();
 
-    driver.get(BASE_URL);
-    System.out.println(driver.getTitle());
-    assertEquals(driver.getTitle(), PageTitlesUtils.HOME_PAGE_TITLE);
+        driver.get(BASE_URL);
+        System.out.println(driver.getTitle());
+        assertEquals(driver.getTitle(), PageTitlesUtils.HOME_PAGE_TITLE);
 
-    bestSellersPage = new BestSellersPage(driver);
+        bestSellersPage = new BestSellersPage(driver);
     }
 
     @Test

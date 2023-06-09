@@ -23,23 +23,11 @@ public class ContactUsPageTest extends BaseTests {
         contactUsFormPage = new ContactUsFormPage(driver);
     }
 
-    @Test
+    @Test(priority = 1)
     public void shouldNotAllowToSendEmptyForm() {
         topMenuPage.clickOnContactUsLink();
         contactUsFormPage.clickOnSubmitContactFormButton();
         Assertions.assertThat(contactUsFormPage.isAlertMessageDisplay()).isTrue();
-    }
-
-    @Test
-    public void shouldNotAllowToSandFormWithoutEmail() {
-        ContactMassage contactMassage = new ContactMassage();
-        topMenuPage.clickOnContactUsLink();
-        contactMassage.setSubject(ContactMassageSubject.CUSTOMER_SERVICE);
-        contactUsFormPage.setIdOrderInput("QWERTY #1234");
-        contactUsFormPage.setMessageInput("QWERTY #1234 asdf");
-        contactUsFormPage.clickOnSubmitContactFormButton();
-        Assertions.assertThat(contactUsFormPage.isAlertMessageDisplay()).isTrue();
-
     }
 
     private void fillOutForm(String email, String idOrder, String message) {
@@ -49,33 +37,38 @@ public class ContactUsPageTest extends BaseTests {
         contactUsFormPage.clickOnSubmitContactFormButton();
     }
 
-    @Test
-    public void shouldNotAllowToSandFormWithoutSubject() {
+    @Test(priority = 2)
+    public void shouldNotAllowToSandFormWithoutEmail() {
+        ContactMassage contactMassage = new ContactMassage();
         topMenuPage.clickOnContactUsLink();
-        fillOutForm("test@example.com", "QWERTY #1234", "QWERTY #1234 asdf");
+        contactMassage.setSubject(ContactMassageSubject.CUSTOMER_SERVICE);
+        fillOutForm("", "QWERTY #12 34", "QWERTY #1234");
         Assertions.assertThat(contactUsFormPage.isAlertMessageDisplay()).isTrue();
     }
 
 
-    @Test
+    @Test(priority = 3)
+    public void shouldNotAllowToSandFormWithoutSubject() {
+        topMenuPage.clickOnContactUsLink();
+        fillOutForm("test@example.com", "QWERTY #1234", "QWERTY #1234");
+        Assertions.assertThat(contactUsFormPage.isAlertMessageDisplay()).isTrue();
+    }
+
+
+    @Test(priority = 4)
     public void shouldNotAllowToSandFormWithoutMessage() {
         ContactMassage contactMassage = new ContactMassage();
         topMenuPage.clickOnContactUsLink();
         contactMassage.setSubject(ContactMassageSubject.WEBMASTER);
-        contactUsFormPage.setIdOrderInput("QWERTY #1234");
-        contactUsFormPage.setEmailInput("test@example.com");
-        contactUsFormPage.clickOnSubmitContactFormButton();
+        fillOutForm("test@example.com", "QWERTY #1234", "");
         Assertions.assertThat(contactUsFormPage.isAlertMessageDisplay()).isTrue();
     }
 
-    @Test
+    @Test(priority = 5)
     public void canSendValidForm() {
         topMenuPage.clickOnContactUsLink();
         contactUsFormPage.setSubjectChoose("c");
-        contactUsFormPage.setEmailInput("test11@example.com");
-        contactUsFormPage.setIdOrderInput("QWERTY #1234");
-        contactUsFormPage.setMessageInput("QWERTY #1234 asdf");
-        contactUsFormPage.clickOnSubmitContactFormButton();
+        fillOutForm("test02@example.com", "QWERTY #1234", "QWERTY #1234");
         Assertions.assertThat(contactUsFormPage.isAlertSuccessDisplayed()).isTrue();
     }
 }

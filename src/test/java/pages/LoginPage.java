@@ -25,25 +25,31 @@ public class LoginPage extends BasePage {
     @FindBy(className = "alert-danger")
     WebElement loginError;
 
-    public void setEmailCreateInput(String emailCreate){
+    public void setEmailCreateInput(String emailCreate) {
         emailCreateAccountInput.sendKeys(emailCreate);
     }
-    public void clickOnSubmitCreateButton(){
+
+    public void clickOnSubmitCreateButton() {
         submitCreateButton.click();
     }
-    public void setEmailToLoginInput(String email){
+
+    public void setEmailToLoginInput(String email) {
         emailToLoginInput.sendKeys(email);
     }
-    public void setPasswordToLoginInput(String password){
+
+    public void setPasswordToLoginInput(String password) {
         passwordToLoginInput.sendKeys(password);
     }
-    public void clickOnSubmitLogin(){
+
+    public void clickOnSubmitLogin() {
         submitLoginButton.click();
     }
-    public boolean isCreateAccountErrorDisplayed(){
+
+    public boolean isCreateAccountErrorDisplayed() {
         return super.isDisplayed(createAccountError);
     }
-    public boolean isLoginErrorDisplayed(){
+
+    public boolean isLoginErrorDisplayed() {
         return super.isDisplayed(loginError);
     }
 }

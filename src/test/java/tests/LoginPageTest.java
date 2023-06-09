@@ -35,7 +35,7 @@ public class LoginPageTest extends BaseTests {
         Assertions.assertThat(createAccountFormPage.isAccountCreationFormDisplayed()).isTrue();
     }
 
-    @Test
+    @Test(priority = 6)
     public void shouldNotAllowCreateAccountWithInvalidEmail() {
         topMenuPage.clickOnLoginLink();
         loginPage.setEmailCreateInput("teest@example");
@@ -43,7 +43,7 @@ public class LoginPageTest extends BaseTests {
         Assertions.assertThat(loginPage.isCreateAccountErrorDisplayed()).isTrue();
     }
 
-    @Test
+    @Test(priority = 5)
     public void shouldNotAllowLoginWithInvalidEmail() {
         topMenuPage.clickOnLoginLink();
         loginPage.setEmailToLoginInput("teest@example");
@@ -51,14 +51,14 @@ public class LoginPageTest extends BaseTests {
         loginPage.clickOnSubmitLogin();
         Assertions.assertThat(loginPage.isLoginErrorDisplayed()).isTrue();
     }
-    @Test
+    @Test(priority = 2)
     public void shouldNotAllowLoginWithoutPassword(){
         topMenuPage.clickOnLoginLink();
         loginPage.setEmailToLoginInput("teest@example.pl");
         loginPage.clickOnSubmitLogin();
         Assertions.assertThat(loginPage.isLoginErrorDisplayed()).isTrue();
     }
-    @Test
+    @Test(priority = 3)
     public void shouldNotAllowLoginWithIncorrectPassword() {
         topMenuPage.clickOnLoginLink();
         loginPage.setEmailToLoginInput("lizzekeen@example.com");
@@ -66,12 +66,13 @@ public class LoginPageTest extends BaseTests {
         loginPage.clickOnSubmitLogin();
         Assertions.assertThat(loginPage.isLoginErrorDisplayed()).isTrue();
     }
-    @Test
+    @Test(priority = 4)
     public void canLoginWithCorrectLoginAndPassword(){
         topMenuPage.clickOnLoginLink();
         loginPage.setEmailToLoginInput("lizzekeen@example.com");
         loginPage.setPasswordToLoginInput("NhYvAI0O4CkOuGn");
         loginPage.clickOnSubmitLogin();
         Assertions.assertThat(myAccountPage.isInfoAccountDisplayed()).isTrue();
+        myAccountPage.clickOnLogout();
     }
 }
