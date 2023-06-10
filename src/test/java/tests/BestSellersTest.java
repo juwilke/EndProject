@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class HomePageTest extends BaseTests {
+public class BestSellersTest extends BaseTests {
 
     private BestSellersPage bestSellersPage;
 

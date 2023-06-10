@@ -13,6 +13,10 @@ public class TopMenuPage extends BasePage {
     WebElement contactUsLink;
     @FindBy(className = "login")
     WebElement loginLink;
+    @FindBy(css = "#search_query_top.search_query.form-control.ac_input")
+    WebElement searchInput;
+    @FindBy(name = "submit_search")
+    WebElement submitSearchButton;
 
     public void clickOnContactUsLink(){
         contactUsLink.click();
@@ -20,5 +24,12 @@ public class TopMenuPage extends BasePage {
 
     public void clickOnLoginLink(){
         loginLink.click();
+    }
+
+    public void clickOnSubmitSearchButton(){
+        submitSearchButton.click();
+    }
+    public void setSearchInput(String text) {
+        searchInput.sendKeys(text);
     }
 }

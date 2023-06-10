@@ -2,22 +2,27 @@
 <suite name="AMF_EndProject" verbose="1" parallel="false">
     <test name="Contact form tests" preserve-order="true" enabled="false">
         <classes>
-            <class name = "tests.ContactUsPageTest"/>
+            <class name="tests.ContactUsPageTest"/>
         </classes>
     </test>
     <test name="Test checking the display of items" preserve-order="true" enabled="false">
         <classes>
-            <class name = "tests.HomePageTest"/>
+            <class name="tests.BestSellersTest"/>
         </classes>
     </test>
     <test name="Login page tests" preserve-order="true" enabled="false">
         <classes>
-            <class name = "tests.LoginPageTest"/>
+            <class name="tests.LoginPageTest"/>
         </classes>
     </test>
     <test name="Tests checking the account creation form" preserve-order="true" enabled="false">
         <classes>
-            <class name = "tests.CreateAccountFormTest"/>
+            <class name="tests.CreateAccountFormTest"/>
+        </classes>
+    </test>
+    <test name="Search engine test" preserve-order="true" enabled="false">
+        <classes>
+         <class name="tests.SearchTest"/>
         </classes>
     </test>
 </suite>
