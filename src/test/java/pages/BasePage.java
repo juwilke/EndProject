@@ -11,9 +11,12 @@ import java.time.Duration;
 
 public class BasePage {
     protected WebDriverWait wait;
+    protected WebDriver webDriver;
+
     public BasePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        webDriver = driver;
     }
     public boolean isDisplayed(WebElement alertBox) {
         wait.until(ExpectedConditions.visibilityOf(alertBox));

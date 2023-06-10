@@ -17,6 +17,8 @@ public class TopMenuPage extends BasePage {
     WebElement searchInput;
     @FindBy(name = "submit_search")
     WebElement submitSearchButton;
+    @FindBy(css = "ul.sf-menu > li:nth-child(2) > a")
+    WebElement dressesButton;
 
     public void clickOnContactUsLink(){
         contactUsLink.click();
@@ -31,5 +33,9 @@ public class TopMenuPage extends BasePage {
     }
     public void setSearchInput(String text) {
         searchInput.sendKeys(text);
+    }
+
+    public void clickOnDressesButton(){
+        dressesButton.click();
     }
 }

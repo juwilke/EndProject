@@ -25,4 +25,9 @@
          <class name="tests.SearchTest"/>
         </classes>
     </test>
+    <test name="Sorting results test" preserve-order="true" enabled="false">
+        <classes>
+            <class name="tests.SortingResultsTest"/>
+        </classes>
+    </test>
 </suite>

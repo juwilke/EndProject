@@ -5,11 +5,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+
 
 public class ResultsPage extends BasePage {
     public ResultsPage(WebDriver driver) {
@@ -22,6 +26,11 @@ public class ResultsPage extends BasePage {
     List<WebElement> foundProducts;
     @FindBy(id = "center_column")
     WebElement alertWarning;
+
+    public void selectSortBy(String sortValue){
+        Select byPriceLowestFirst = new Select(webDriver.findElement(By.id("selectProductSort")));
+        byPriceLowestFirst.selectByValue(sortValue);
+    }
 
     public String getNumberOfMatchingItems() {
         wait.until(ExpectedConditions.visibilityOf(numberOfMatchingItems));
@@ -45,5 +54,13 @@ public class ResultsPage extends BasePage {
                     return productInfoMap;
                 })
                 .collect(Collectors.toList());
+    }
+    public List<Float> getPrices(){
+        List<Float> prices = new ArrayList<>();
+        for (Map<String, String> productInfo : getFoundProductsInfo()) {
+            prices.add(Float.parseFloat(productInfo.get("price")));
+        }
+
+        return prices;
     }
 }
