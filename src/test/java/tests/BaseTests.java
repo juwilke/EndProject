@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeClass;
 
 public class BaseTests {
     protected static final String BASE_URL = "http://automationpractice.pl/index.php";
-    protected static WebDriver driver;
+    public static WebDriver driver;
 
     @BeforeClass
     public static void setupClass() {

@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.BasePage;
 
 public class CreateAccountFormPage extends BasePage {
     public CreateAccountFormPage(WebDriver driver) {
@@ -13,8 +14,6 @@ public class CreateAccountFormPage extends BasePage {
     WebElement accountCreationForm;
     @FindBy(id = "id_gender2")
     WebElement genderFemale;
-    @FindBy(id = "id_gender1")
-    WebElement genderMale;
     @FindBy(id = "customer_firstname")
     WebElement firstNameInput;
     @FindBy(id = "customer_lastname")
@@ -34,16 +33,19 @@ public class CreateAccountFormPage extends BasePage {
     public void clickOnGenderFemale(){
         genderFemale.click();
     }
-    public void clickOnGenderMale(){
-        genderMale.click();
-    }
-    public void setFirstNameInput(String firstName){
+
+    public void inputRandomFirstName() {
+        String firstName = faker.name().firstName();
         firstNameInput.sendKeys(firstName);
     }
-    public void setLastNameInput(String lastName){
+
+    public void inputRandomLastName() {
+        String lastName = faker.name().lastName();
         lastNameInput.sendKeys(lastName);
     }
-    public void setPasswordInput(String password){
+
+    public void inputRandomPassword() {
+        String password = faker.internet().password();
         passwordInput.sendKeys(password);
     }
     public void clickOnSubmitAccountButton(){
@@ -54,5 +56,11 @@ public class CreateAccountFormPage extends BasePage {
     }
     public boolean isAlertErrorDisplayed() {
         return super.isDisplayed(alertError);
+    }
+    public String redBoxText() {
+        return isTextInAlertBox(alertError);
+    }
+    public String greenBoxText() {
+        return isTextInAlertBox(alertSuccess);
     }
 }

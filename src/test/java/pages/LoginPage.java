@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.BasePage;
 
 public class LoginPage extends BasePage {
 
@@ -33,11 +34,23 @@ public class LoginPage extends BasePage {
         submitCreateButton.click();
     }
 
-    public void setEmailToLoginInput(String email) {
+    public void inputRandomEmailCreate() {
+        String email = faker.internet().emailAddress();
+        emailCreateAccountInput.sendKeys(email);
+    }
+    public void inputRandomEmailToLogin(){
+        String email = faker.internet().emailAddress();
         emailToLoginInput.sendKeys(email);
     }
 
+    public void setEmailToLoginInput(String email) {
+        emailToLoginInput.sendKeys(email);
+    }
     public void setPasswordToLoginInput(String password) {
+        passwordToLoginInput.sendKeys(password);
+    }
+    public void inputRandomPassword() {
+        String password = faker.internet().password();
         passwordToLoginInput.sendKeys(password);
     }
 
@@ -52,4 +65,8 @@ public class LoginPage extends BasePage {
     public boolean isLoginErrorDisplayed() {
         return super.isDisplayed(loginError);
     }
+    public String redBoxText() {
+        return isTextInAlertBox(loginError);
+    }
+
 }

@@ -3,8 +3,9 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.BasePage;
 
-public class ContactUsFormPage extends BasePage{
+public class ContactUsFormPage extends BasePage {
 
     public ContactUsFormPage(WebDriver driver) {
         super(driver);
@@ -16,8 +17,6 @@ public class ContactUsFormPage extends BasePage{
     WebElement alertMessage;
     @FindBy(id = "email")
     WebElement emailInput;
-    @FindBy(id = "id_order")
-    WebElement idOrderInput;
     @FindBy(id = "message")
     WebElement messageInput;
     @FindBy(id = "id_contact")
@@ -34,14 +33,17 @@ public class ContactUsFormPage extends BasePage{
     public void setEmailInput(String email){
         emailInput.sendKeys(email);
     }
-    public void setIdOrderInput(String order){
-        idOrderInput.sendKeys(order);
-    }
     public void setMessageInput(String message){
         messageInput.sendKeys(message);
     }
     public void setSubjectChoose(String subject){
         subjectChoose.sendKeys(subject);
+    }
+    public String redBoxText() {
+        return isTextInAlertBox(alertMessage);
+    }
+    public String greenBoxText() {
+        return isTextInAlertBox(alertSuccess);
     }
     public boolean isAlertSuccessDisplayed(){
         return super.isDisplayed(alertSuccess);

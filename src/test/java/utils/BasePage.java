@@ -1,5 +1,6 @@
-package pages;
+package utils;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,11 +13,13 @@ import java.time.Duration;
 public class BasePage {
     protected WebDriverWait wait;
     protected WebDriver webDriver;
+    protected Faker faker;
 
     public BasePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         webDriver = driver;
+        faker = new Faker();
     }
     public boolean isDisplayed(WebElement alertBox) {
         wait.until(ExpectedConditions.visibilityOf(alertBox));
@@ -25,5 +28,8 @@ public class BasePage {
             isDisplayAlert = alertBox.isDisplayed();
         } catch (NoSuchElementException exception) {}
         return isDisplayAlert;
+    }
+    public String isTextInAlertBox(WebElement box) {
+        return box.getText();
     }
 }
