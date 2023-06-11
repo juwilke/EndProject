@@ -23,7 +23,7 @@ public class SortingResultsTest extends BaseTests{
         resultsPage = new ResultsPage(driver);
     }
 
-    @Test(priority = 1)
+    @Test(testName = "5.1", priority = 1)
     public void canSortItemsByPriceLowestFirst(){
         topMenuPage.clickOnDressesButton();
 
@@ -36,7 +36,7 @@ public class SortingResultsTest extends BaseTests{
 
         Assertions.assertThat(pricesBefore).isEqualTo(pricesAfter);
     }
-    @Test(priority = 2)
+    @Test(testName = "5.2", priority = 2)
     public void canSortItemsByPriceHighestFirst(){
         topMenuPage.clickOnDressesButton();
 

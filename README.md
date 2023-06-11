@@ -1,2 +1,6 @@
-# EndProject
-final project AMF - testing website (automationpractice.pl) in Java
+EndProject
+
+final project - testing website (automationpractice.pl) in Java
+
+Test Cases: [ProjektSeleniumJava.md](docs/ProjektSeleniumJava.md)
+

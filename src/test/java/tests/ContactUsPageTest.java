@@ -23,7 +23,7 @@ public class ContactUsPageTest extends BaseTests {
         contactUsFormPage = new ContactUsFormPage(driver);
     }
 
-    @Test(priority = 1)
+    @Test(testName = "TC 1.1", priority = 1)
     public void shouldNotAllowToSendEmptyForm() {
         topMenuPage.clickOnContactUsLink();
         contactUsFormPage.clickOnSubmitContactFormButton();
@@ -37,8 +37,8 @@ public class ContactUsPageTest extends BaseTests {
         contactUsFormPage.clickOnSubmitContactFormButton();
     }
 
-    @Test(priority = 2)
-    public void shouldNotAllowToSandFormWithoutEmail() {
+    @Test(testName = "TC 1.2", priority = 2)
+    public void shouldNotAllowToSendFormWithoutEmail() {
         ContactMassage contactMassage = new ContactMassage();
         topMenuPage.clickOnContactUsLink();
         contactMassage.setSubject(ContactMassageSubject.CUSTOMER_SERVICE);
@@ -47,16 +47,16 @@ public class ContactUsPageTest extends BaseTests {
     }
 
 
-    @Test(priority = 3)
-    public void shouldNotAllowToSandFormWithoutSubject() {
+    @Test(testName = "TC 1.3", priority = 3)
+    public void shouldNotAllowToSendFormWithoutSubject() {
         topMenuPage.clickOnContactUsLink();
         fillOutForm("test@example.com", "QWERTY #1234", "QWERTY #1234");
         Assertions.assertThat(contactUsFormPage.isAlertMessageDisplay()).isTrue();
     }
 
 
-    @Test(priority = 4)
-    public void shouldNotAllowToSandFormWithoutMessage() {
+    @Test(testName = "TC 1.4", priority = 4)
+    public void shouldNotAllowToSendFormWithoutMessage() {
         ContactMassage contactMassage = new ContactMassage();
         topMenuPage.clickOnContactUsLink();
         contactMassage.setSubject(ContactMassageSubject.WEBMASTER);
@@ -64,7 +64,7 @@ public class ContactUsPageTest extends BaseTests {
         Assertions.assertThat(contactUsFormPage.isAlertMessageDisplay()).isTrue();
     }
 
-    @Test(priority = 5)
+    @Test(testName = "TC 1.5", priority = 5)
     public void canSendValidForm() {
         topMenuPage.clickOnContactUsLink();
         contactUsFormPage.setSubjectChoose("c");

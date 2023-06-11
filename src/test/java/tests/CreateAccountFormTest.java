@@ -24,7 +24,7 @@ public class CreateAccountFormTest extends BaseTests {
         loginPage = new LoginPage(driver);
     }
 
-    @Test(priority = 1)
+    @Test(testName = "TC 2.3", priority = 1)
     public void shouldNotAllowToCreateAccountWithEmailOnly(){
         topMenuPage.clickOnLoginLink();
         loginPage.setEmailCreateInput("john@example.com");
@@ -33,10 +33,10 @@ public class CreateAccountFormTest extends BaseTests {
         createAccountFormPage.clickOnSubmitAccountButton();
         Assertions.assertThat(createAccountFormPage.isAlertErrorDisplayed()).isTrue();
     }
-    @Test(priority = 5)
+    @Test(testName = "TC 2.7", priority = 5)
     public void canCreateNewAccount(){
         topMenuPage.clickOnLoginLink();
-        loginPage.setEmailCreateInput("lizakan@example.com");
+        loginPage.setEmailCreateInput("ljizzean@example.com");
         loginPage.clickOnSubmitCreateButton();
         Assertions.assertThat(createAccountFormPage.isAccountCreationFormDisplayed()).isTrue();
         createAccountFormPage.clickOnGenderFemale();
@@ -46,7 +46,7 @@ public class CreateAccountFormTest extends BaseTests {
         createAccountFormPage.clickOnSubmitAccountButton();
         Assertions.assertThat(createAccountFormPage.isAlertSuccessDisplayed()).isTrue();
     }
-    @Test(priority = 2)
+    @Test(testName = "TC 2.4", priority = 2)
     public void shouldNotAllowToCreateAccountWithoutFirstName(){
         topMenuPage.clickOnLoginLink();
         loginPage.setEmailCreateInput("jobb@example.com");
@@ -57,7 +57,7 @@ public class CreateAccountFormTest extends BaseTests {
         createAccountFormPage.clickOnSubmitAccountButton();
         Assertions.assertThat(createAccountFormPage.isAlertErrorDisplayed()).isTrue();
     }
-    @Test(priority = 3)
+    @Test(testName = "TC 2.5", priority = 3)
     public void shouldNotAllowToCreateAccountWithoutLastName(){
         topMenuPage.clickOnLoginLink();
         loginPage.setEmailCreateInput("jbob@example.com");
@@ -68,7 +68,7 @@ public class CreateAccountFormTest extends BaseTests {
         createAccountFormPage.clickOnSubmitAccountButton();
         Assertions.assertThat(createAccountFormPage.isAlertErrorDisplayed()).isTrue();
     }
-    @Test(priority = 4)
+    @Test(testName = "TC 2.6", priority = 4)
     public void shouldNotAllowToCreateAccountWithoutPassword(){
         topMenuPage.clickOnLoginLink();
         loginPage.setEmailCreateInput("bjob@example.com");

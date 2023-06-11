@@ -21,12 +21,12 @@ public class SearchTest extends BaseTests {
         resultsPage = new ResultsPage(driver);
     }
 
-    @Test(priority = 1)
+    @Test(testName = "TC 4.1", priority = 1)
     public void shouldNotAllowSearchWithEmptyField(){
         topMenuPage.clickOnSubmitSearchButton();
         Assertions.assertThat(resultsPage.isAlertWaringDisplay()).isTrue();
     }
-    @Test(priority = 2)
+    @Test(testName = "TC 4.2", priority = 2)
     public void shouldSeeSearchResults(){
         topMenuPage.setSearchInput("blouse");
         topMenuPage.clickOnSubmitSearchButton();
