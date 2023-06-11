@@ -1,8 +1,10 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import utils.BasePage;
 
 public class ContactUsFormPage extends BasePage {
@@ -19,8 +21,6 @@ public class ContactUsFormPage extends BasePage {
     WebElement emailInput;
     @FindBy(id = "message")
     WebElement messageInput;
-    @FindBy(id = "id_contact")
-    WebElement subjectChoose;
     @FindBy(className = "alert-success")
     WebElement alertSuccess;
 
@@ -36,9 +36,7 @@ public class ContactUsFormPage extends BasePage {
     public void setMessageInput(String message){
         messageInput.sendKeys(message);
     }
-    public void setSubjectChoose(String subject){
-        subjectChoose.sendKeys(subject);
-    }
+
     public String redBoxText() {
         return isTextInAlertBox(alertMessage);
     }
@@ -47,6 +45,11 @@ public class ContactUsFormPage extends BasePage {
     }
     public boolean isAlertSuccessDisplayed(){
         return super.isDisplayed(alertSuccess);
+    }
+
+    public void selectSubject(String subjectValue){
+        Select selectedSubject = new Select(webDriver.findElement(By.id("id_contact")));
+        selectedSubject.selectByValue(subjectValue);
     }
 
 
