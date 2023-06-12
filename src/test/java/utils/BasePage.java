@@ -12,13 +12,13 @@ import java.time.Duration;
 
 public class BasePage {
     protected WebDriverWait wait;
-    protected WebDriver webDriver;
+    protected WebDriver driver;
     protected Faker faker;
 
     public BasePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        webDriver = driver;
+        this.driver = driver;
         faker = new Faker();
     }
     public boolean isDisplayed(WebElement alertBox) {

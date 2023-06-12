@@ -11,7 +11,6 @@ import utils.PageTitlesUtils;
 
 public class CreateAccountFormTest extends BaseTests {
 
-    private LoginPage loginPage;
     private CreateAccountFormPage createAccountFormPage;
     private TopMenuPage topMenuPage;
 
@@ -22,12 +21,11 @@ public class CreateAccountFormTest extends BaseTests {
 
         createAccountFormPage = new CreateAccountFormPage(driver);
         topMenuPage = new TopMenuPage(driver);
-        loginPage = new LoginPage(driver);
     }
 
     @Test(testName = "TC 2.3", priority = 1)
     public void shouldNotAllowToCreateAccountWithEmailOnly(){
-        topMenuPage.clickOnLoginLink();
+        LoginPage loginPage = topMenuPage.clickOnLoginLink();
         loginPage.inputRandomEmailCreate();
         loginPage.clickOnSubmitCreateButton();
         Assertions.assertThat(createAccountFormPage.isAccountCreationFormDisplayed()).isTrue();
@@ -37,7 +35,7 @@ public class CreateAccountFormTest extends BaseTests {
     }
     @Test(testName = "TC 2.4", priority = 2)
     public void shouldNotAllowToCreateAccountWithoutFirstName(){
-        topMenuPage.clickOnLoginLink();
+        LoginPage loginPage = topMenuPage.clickOnLoginLink();
         loginPage.inputRandomEmailCreate();
         loginPage.clickOnSubmitCreateButton();
         Assertions.assertThat(createAccountFormPage.isAccountCreationFormDisplayed()).isTrue();
@@ -49,7 +47,7 @@ public class CreateAccountFormTest extends BaseTests {
     }
     @Test(testName = "TC 2.5", priority = 3)
     public void shouldNotAllowToCreateAccountWithoutLastName(){
-        topMenuPage.clickOnLoginLink();
+        LoginPage loginPage = topMenuPage.clickOnLoginLink();
         loginPage.inputRandomEmailCreate();
         loginPage.clickOnSubmitCreateButton();
         Assertions.assertThat(createAccountFormPage.isAccountCreationFormDisplayed()).isTrue();
@@ -61,7 +59,7 @@ public class CreateAccountFormTest extends BaseTests {
     }
     @Test(testName = "TC 2.6", priority = 4)
     public void shouldNotAllowToCreateAccountWithoutPassword(){
-        topMenuPage.clickOnLoginLink();
+        LoginPage loginPage = topMenuPage.clickOnLoginLink();
         loginPage.inputRandomEmailCreate();
         loginPage.clickOnSubmitCreateButton();
         Assertions.assertThat(createAccountFormPage.isAccountCreationFormDisplayed()).isTrue();
@@ -73,7 +71,7 @@ public class CreateAccountFormTest extends BaseTests {
     }
     @Test(testName = "TC 2.7", priority = 5)
     public void canCreateNewAccount(){
-        topMenuPage.clickOnLoginLink();
+        LoginPage loginPage = topMenuPage.clickOnLoginLink();
         loginPage.inputRandomEmailCreate();
         loginPage.clickOnSubmitCreateButton();
         Assertions.assertThat(createAccountFormPage.isAccountCreationFormDisplayed()).isTrue();

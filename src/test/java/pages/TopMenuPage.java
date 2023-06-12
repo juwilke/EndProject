@@ -21,22 +21,26 @@ public class TopMenuPage extends BasePage {
     @FindBy(css = "ul.sf-menu > li:nth-child(2) > a")
     WebElement dressesButton;
 
-    public void clickOnContactUsLink(){
+    public ContactUsFormPage clickOnContactUsLink(){
         contactUsLink.click();
+        return new ContactUsFormPage(driver);
     }
 
-    public void clickOnLoginLink(){
+    public LoginPage clickOnLoginLink(){
         loginLink.click();
+        return new LoginPage(driver);
     }
 
-    public void clickOnSubmitSearchButton(){
+    public ResultsPage clickOnSubmitSearchButton(){
         submitSearchButton.click();
+        return new ResultsPage(driver);
     }
     public void setSearchInput(String text) {
         searchInput.sendKeys(text);
     }
 
-    public void clickOnDressesButton(){
+    public ResultsPage clickOnDressesButton(){
         dressesButton.click();
+        return new ResultsPage(driver);
     }
 }

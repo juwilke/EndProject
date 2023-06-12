@@ -68,5 +68,4 @@ public class LoginPage extends BasePage {
     public String redBoxText() {
         return isTextInAlertBox(loginError);
     }
-
 }

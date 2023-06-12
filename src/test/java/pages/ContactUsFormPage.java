@@ -48,7 +48,7 @@ public class ContactUsFormPage extends BasePage {
     }
 
     public void selectSubject(String subjectValue){
-        Select selectedSubject = new Select(webDriver.findElement(By.id("id_contact")));
+        Select selectedSubject = new Select(driver.findElement(By.id("id_contact")));
         selectedSubject.selectByValue(subjectValue);
     }
 

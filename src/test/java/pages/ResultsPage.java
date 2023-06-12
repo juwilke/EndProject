@@ -29,7 +29,7 @@ public class ResultsPage extends BasePage {
     WebElement alertWarning;
 
     public void selectSortBy(String sortValue){
-        Select byPriceLowestFirst = new Select(webDriver.findElement(By.id("selectProductSort")));
+        Select byPriceLowestFirst = new Select(driver.findElement(By.id("selectProductSort")));
         byPriceLowestFirst.selectByValue(sortValue);
     }
 

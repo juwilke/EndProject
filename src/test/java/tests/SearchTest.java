@@ -10,7 +10,6 @@ import pages.TopMenuPage;
 public class SearchTest extends BaseTests {
 
     private TopMenuPage topMenuPage;
-    private ResultsPage resultsPage;
 
     @BeforeClass
     public void setupTest() {
@@ -18,19 +17,19 @@ public class SearchTest extends BaseTests {
         driver.get(BASE_URL);
 
         topMenuPage = new TopMenuPage(driver);
-        resultsPage = new ResultsPage(driver);
     }
 
     @Test(testName = "TC 4.1", priority = 1)
-    public void shouldNotAllowSearchWithEmptyField(){
-        topMenuPage.clickOnSubmitSearchButton();
+    public void shouldNotAllowSearchWithEmptyField() {
+        ResultsPage resultsPage = topMenuPage.clickOnSubmitSearchButton();
         Assertions.assertThat(resultsPage.isAlertWaringDisplay()).isTrue();
     }
+
     @Test(testName = "TC 4.2", priority = 2)
-    public void shouldSeeSearchResults(){
+    public void shouldSeeSearchResults() {
         topMenuPage.setSearchInput("blouse");
-        topMenuPage.clickOnSubmitSearchButton();
-        System.out.println(resultsPage.getFoundProductsInfo());
+        ResultsPage resultsPage = topMenuPage.clickOnSubmitSearchButton();
+
         Assertions.assertThat(resultsPage.getNumberOfMatchingItems()).contains("Showing 1 - 1 of 1 item");
     }
 

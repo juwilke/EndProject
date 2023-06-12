@@ -10,9 +10,9 @@ import pages.TopMenuPage;
 import java.util.Collections;
 import java.util.List;
 
-public class SortingResultsTest extends BaseTests{
+public class SortingResultsTest extends BaseTests {
     private TopMenuPage topMenuPage;
-    private ResultsPage resultsPage;
+
 
     @BeforeClass
     public void setupTest() {
@@ -20,12 +20,11 @@ public class SortingResultsTest extends BaseTests{
         driver.get(BASE_URL);
 
         topMenuPage = new TopMenuPage(driver);
-        resultsPage = new ResultsPage(driver);
     }
 
     @Test(testName = "5.1", priority = 1)
-    public void canSortItemsByPriceLowestFirst(){
-        topMenuPage.clickOnDressesButton();
+    public void canSortItemsByPriceLowestFirst() {
+        ResultsPage resultsPage = topMenuPage.clickOnDressesButton();
 
         List<Float> pricesBefore = resultsPage.getPrices();
         Collections.sort(pricesBefore);
@@ -36,9 +35,10 @@ public class SortingResultsTest extends BaseTests{
 
         Assertions.assertThat(pricesBefore).isEqualTo(pricesAfter);
     }
+
     @Test(testName = "5.2", priority = 2)
-    public void canSortItemsByPriceHighestFirst(){
-        topMenuPage.clickOnDressesButton();
+    public void canSortItemsByPriceHighestFirst() {
+        ResultsPage resultsPage = topMenuPage.clickOnDressesButton();
 
         List<Float> pricesBefore = resultsPage.getPrices();
         Collections.sort(pricesBefore);
