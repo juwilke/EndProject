@@ -24,6 +24,7 @@ public class BasePage {
     public boolean isDisplayed(WebElement alertBox) {
         wait.until(ExpectedConditions.visibilityOf(alertBox));
         boolean isDisplayAlert = false;
+        //noinspection CatchMayIgnoreException
         try {
             isDisplayAlert = alertBox.isDisplayed();
         } catch (NoSuchElementException exception) {}
