@@ -1,18 +1,20 @@
-EndProject
+## EndProject
 
-final project - testing website (automationpractice.pl) in Java
+### About project
+Practice project for the completion of postgraduate studies in Java/Selenium test automation
 
-Test Cases: [ProjektSeleniumJava.md](docs/ProjektSeleniumJava.md)
+testing website automationpractice.pl
 
-### Prerequisites:
+### Tech Stack
+`Java` `Maven` `TestNG` `Selenium` `WebDriverManager`
+
+### Prerequisites
 - Java 17 JDK (or higher) 
 - Apache Maven
-- Google Chrome
 
-
-### Run the project:
+### Run the project
 - Launch Terminal and navigate to directory, where the pom.xml file is located.
 - Run the command below in order to run the tests:
   ```bash
-  mvn clean test -DsuiteFile=full
+  mvn clean test -DsuiteFile
   ```
