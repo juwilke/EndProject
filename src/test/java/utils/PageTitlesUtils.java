@@ -1,7 +1,7 @@
 package utils;
 
 public class PageTitlesUtils {
-    public static final String HOME_PAGE_TITLE = "My Store";
+    public static final String HOME_PAGE_TITLE = "My Shop";
     public static final String ERROR_TEXT_FOR_EMPTY_CONTACT_US_FORM = "There is 1 error";
     public static final String ERROR_TEXT_FOR_EMPTY_MESSAGE_CONTACT_US_FORM = "The message cannot be blank";
     public static final String ERROR_TEXT_FOR_EMPTY_EMAIL_CONTACT_US_FORM = "Invalid email address.";
